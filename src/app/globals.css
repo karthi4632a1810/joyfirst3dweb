@@ -1,0 +1,219 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   JOYFIRST — Architectural Design System (light)
+   Warm white paper, stone and concrete greys, near-black ink, bronze accent.
+   Dark ink blocks are used deliberately, for the closing CTA and the footer.
+   ========================================================================== */
+
+@theme {
+  /* ---- Surfaces -------------------------------------------------------- */
+  /** Page background. Warm, never pure white — pure white reads as a document. */
+  --color-paper: #f8f6f2;
+  /** Alternating sections and image placeholders. */
+  --color-bone: #edeae3;
+  /** Deeper stone, for insets and hovered rows. */
+  --color-linen: #e2ded5;
+  /** Deliberate dark blocks (CTA, footer). */
+  --color-ink: #16171a;
+  --color-ink-soft: #212327;
+
+  /* ---- Text ------------------------------------------------------------ */
+  /* On paper: ink 15:1, graphite 9.4:1, stone 5.3:1 — all pass AA. */
+  --color-graphite: #3f4247;
+  --color-stone: #67645e;
+  /* On ink: paper 15:1, mist 6.8:1. */
+  --color-mist: #a8a49c;
+
+  /* ---- Lines ----------------------------------------------------------- */
+  --color-line: #d8d3c9;
+  --color-line-strong: #bdb7ab;
+  --color-line-dark: #34363b;
+
+  /* ---- Accent ---------------------------------------------------------- */
+  /** Body-safe on paper at 4.6:1. */
+  --color-bronze: #8a6a3f;
+  /** Decorative only — rules, underlines, accents on dark. */
+  --color-bronze-soft: #b08e5c;
+
+  /* ---- Type ------------------------------------------------------------ */
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+  /* Editorial display scale (fluid) */
+  --text-display-xl: clamp(3rem, 11.5vw, 12rem);
+  --text-display-xl--line-height: 0.86;
+  --text-display-xl--letter-spacing: -0.045em;
+  --text-display-xl--font-weight: 500;
+
+  --text-display: clamp(2.5rem, 7.5vw, 7rem);
+  --text-display--line-height: 0.92;
+  --text-display--letter-spacing: -0.04em;
+  --text-display--font-weight: 500;
+
+  --text-headline: clamp(1.875rem, 4.2vw, 3.75rem);
+  --text-headline--line-height: 1.02;
+  --text-headline--letter-spacing: -0.03em;
+  --text-headline--font-weight: 500;
+
+  --text-title: clamp(1.375rem, 2.4vw, 2.125rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.02em;
+
+  --text-lede: clamp(1.0625rem, 1.5vw, 1.375rem);
+  --text-lede--line-height: 1.55;
+  --text-lede--letter-spacing: -0.01em;
+
+  --text-label: 0.6875rem;
+  --text-label--line-height: 1.1;
+  --text-label--letter-spacing: 0.18em;
+  --text-label--font-weight: 500;
+
+  /* ---- Motion ---------------------------------------------------------- */
+  --ease-arch: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---- Layout ---------------------------------------------------------- */
+  --spacing-gutter: clamp(1.25rem, 5vw, 5.5rem);
+  --breakpoint-xs: 22.5rem;
+}
+
+/* --------------------------------------------------------------------------
+   Base
+   -------------------------------------------------------------------------- */
+
+@layer base {
+  * {
+    border-color: var(--color-line);
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: auto;
+    background-color: var(--color-paper);
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-graphite);
+    font-family: var(--font-sans);
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-bronze);
+    color: var(--color-paper);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    text-wrap: balance;
+    color: var(--color-ink);
+  }
+
+  /* Visible, on-brand focus ring */
+  :focus-visible {
+    outline: 2px solid var(--color-bronze);
+    outline-offset: 3px;
+    border-radius: 1px;
+  }
+
+  /* Inside a dark block the bronze ring loses contrast, so it lightens. */
+  [data-surface="dark"] :focus-visible {
+    outline-color: var(--color-bronze-soft);
+  }
+
+  /* Native cursor hidden only while the custom cursor is actually mounted */
+  html[data-cursor="custom"],
+  html[data-cursor="custom"] * {
+    cursor: none !important;
+  }
+
+  /* Lenis */
+  html.lenis,
+  html.lenis body {
+    height: auto;
+  }
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Utilities
+   -------------------------------------------------------------------------- */
+
+@utility container-arch {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: var(--spacing-gutter);
+  max-width: 110rem;
+}
+
+@utility label-arch {
+  font-size: var(--text-label);
+  line-height: 1.1;
+  letter-spacing: 0.18em;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+@utility hairline {
+  border-top: 1px solid var(--color-line);
+}
+
+/* Line-masked reveal wrapper */
+.reveal-line {
+  display: block;
+  overflow: hidden;
+}
+.reveal-line > span {
+  display: block;
+  will-change: transform;
+}
+
+/* Grain overlay. Much lighter than on a dark ground — on paper, visible grain
+   reads as a printing fault rather than as film. */
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.02;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* --------------------------------------------------------------------------
+   Reduced motion — disable parallax, camera moves, cursor, heavy transitions
+   -------------------------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  html[data-cursor="custom"],
+  html[data-cursor="custom"] * {
+    cursor: auto !important;
+  }
+  .grain::after {
+    display: none;
+  }
+}
