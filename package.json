@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "assets": "node scripts/generate-images.mjs"
+    "assets": "node scripts/render-3d.mjs"
   },
   "dependencies": {
     "@react-three/drei": "^10.7.8",

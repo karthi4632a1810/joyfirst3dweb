@@ -49,6 +49,45 @@ const SHOTS = {
   cornerDetail: { position: [15.5, 6.4, 11], target: [11, 6, 3], fov: 32 },
   slabEdge: { position: [17, 4.4, 15], target: [6, 4.2, 6], fov: 30 },
   gardenSide: { position: [-18, 4.5, -22], target: [0, 4, 0], fov: 40 },
+
+  // `plate` schemes are a single interior floor. There is no exterior to
+  // photograph, so every camera lives inside the room and shoots toward the
+  // glazing. Coordinates stay within the smallest plate (20 x 14) so one set
+  // of setups works for all three interior projects.
+  plateWide: { position: [-7, 2.0, -4.5], target: [5, 1.8, 6.5], fov: 62 },
+  plateAxis: { position: [-8, 1.9, 1.5], target: [9, 1.7, 3.5], fov: 56 },
+  plateCorner: { position: [-5.5, 2.1, 5.0], target: [8, 1.9, -3], fov: 50 },
+  plateStair: { position: [6.2, 2.6, 5.4], target: [-1.2, 2.6, -1.0], fov: 52 },
+  plateDetail: { position: [1.5, 1.7, 4.0], target: [-4, 1.6, -1.5], fov: 40 },
+  plateOutlook: { position: [-6, 1.9, -3], target: [2, 1.6, 7], fov: 60 },
+
+  // The coastal pavilion sits on columns and is smaller than the houses, so it
+  // needs to be approached closer and from lower down.
+  raisedApproach: { position: [21, 6.5, 25], target: [0, 4.2, 0], fov: 38 },
+  raisedUnder: { position: [11, 1.3, 15], target: [-2, 3.4, 0], fov: 50 },
+  raisedDeck: { position: [7, 4.6, 13], target: [-3, 4.2, 1], fov: 46 },
+
+  // Inside the courtyard house, looking across the planted court.
+  // Standing in the court itself. Shooting it from inside a wing meant looking
+  // through two layers of tinted glass, which drained all the colour out of it.
+  courtView: { position: [0, 2.3, 4.4], target: [0.3, 1.7, -4.6], fov: 56 },
+  courtCorner: { position: [-5, 2.4, 5.0], target: [5, 2.0, -4], fov: 50 },
+  // Glancing along the row of teak columns.
+  colonnadeDetail: { position: [-7.0, 1.8, 4.5], target: [6.6, 2.1, 5.3], fov: 42 },
+  // The living wing seen from the court it opens onto.
+  courtWing: { position: [-3.5, 2.0, -2.0], target: [1.5, 2.0, 5.2], fov: 48 },
+  // Raking light on plaster. Every face of the court is glazed across the
+  // full storey band, so a plaster detail has to be taken on an outer wall.
+  plasterDetail: { position: [-19.5, 1.8, 3.4], target: [-15.2, 2.8, -1.2], fov: 32 },
+
+  // Inside the coastal pavilion. Its floor is lifted 2.6m, so the standard
+  // interior cameras at eye height 2.2 sit under the deck, and `livingOut` at
+  // 6.1 sits up inside the roof — both render as a blank band.
+  raisedInside: { position: [-4.0, 4.2, -2.2], target: [4.0, 4.0, 6.0], fov: 58 },
+  groveWalk: { position: [9, 1.7, 22], target: [-1, 3.4, 4], fov: 50 },
+
+  // The sleeping end of the apartment plate.
+  plateBedroom: { position: [8.8, 1.8, 3.0], target: [5.8, 1.05, -3.6], fov: 55 },
 };
 
 /** Aspect presets, in output pixels. */
@@ -62,6 +101,13 @@ const SIZES = {
 
 const roleSizes = ["wide", "cinema", "portrait", "portrait", "landscape", "cinema"];
 const roleNames = ["cover", "01", "02", "03", "04", "05"];
+
+/**
+ * Render scale before the downsample to output size. 1.5 costs a little over
+ * twice the pixels and is what keeps mullions, louvre fins and foliage from
+ * aliasing — SwiftShader's MSAA alone is not enough on geometry that thin.
+ */
+const SUPERSAMPLE = 1.5;
 
 /**
  * Shot plan per project — [shot, sky] in the order
@@ -93,61 +139,67 @@ const projectPlans = {
     ["threeQuarter", "soft"],
     ["aerial", "high"],
   ],
+  // Interior-led: an apartment fit-out, so all six cameras are inside it.
   "luxury-interior": [
-    ["livingOut", "clear"],
-    ["lowerOut", "clear"],
-    ["cornerDetail", "high"],
-    ["livingOut", "high"],
-    ["colonnade", "clear"],
-    ["louvres", "clear"],
+    ["plateAxis", "clear"],
+    ["plateWide", "clear"],
+    ["plateCorner", "high"],
+    ["plateOutlook", "high"],
+    ["plateBedroom", "clear"],
+    ["plateDetail", "soft"],
   ],
   "courtyard-house": [
-    ["colonnade", "clear"],
-    ["entrance", "clear"],
-    ["colonnade", "high"],
-    ["lowerOut", "clear"],
-    ["louvres", "high"],
-    ["gardenSide", "clear"],
+    ["courtCorner", "clear"],
+    ["courtView", "clear"],
+    ["colonnadeDetail", "high"],
+    ["courtWing", "clear"],
+    ["plasterDetail", "clear"],
+    ["courtView", "soft"],
   ],
   "corporate-workplace": [
-    ["lowerOut", "soft"],
-    ["livingOut", "soft"],
-    ["colonnade", "soft"],
-    ["livingOut", "high"],
-    ["cornerDetail", "soft"],
-    ["frontal", "soft"],
+    ["plateWide", "soft"],
+    ["plateAxis", "soft"],
+    ["plateCorner", "soft"],
+    ["plateOutlook", "high"],
+    ["plateDetail", "soft"],
+    ["plateWide", "high"],
   ],
   "coastal-retreat": [
-    ["poolside", "clear"],
-    ["approachLow", "clear"],
-    ["colonnade", "clear"],
-    ["livingOut", "clear"],
-    ["gardenSide", "soft"],
-    ["approachWide", "clear"],
+    ["raisedApproach", "clear"],
+    ["raisedUnder", "clear"],
+    ["raisedDeck", "clear"],
+    ["raisedInside", "clear"],
+    ["groveWalk", "soft"],
+    ["raisedApproach", "high"],
   ],
+  // The stair is the project, so it leads and recurs.
   "penthouse-interiors": [
-    ["cornerDetail", "clear"],
-    ["slabEdge", "clear"],
-    ["livingOut", "clear"],
-    ["lowerOut", "high"],
-    ["louvres", "clear"],
-    ["colonnade", "clear"],
+    ["plateStair", "clear"],
+    ["plateAxis", "clear"],
+    ["plateWide", "clear"],
+    ["plateOutlook", "high"],
+    ["plateStair", "soft"],
+    ["plateCorner", "clear"],
   ],
 };
 
-/** Standalone images used outside project pages. */
+/**
+ * Standalone images used outside project pages. Each names the scheme it is
+ * built from, so the site's general imagery is drawn from across the portfolio
+ * rather than all showing the same house.
+ */
 const standalone = [
-  { path: "hero-fallback.jpg", shot: "approachWide", sky: "clear", size: "wide" },
-  { path: "architecture.jpg", shot: "frontal", sky: "clear", size: "portrait" },
-  { path: "interiors.jpg", shot: "livingOut", sky: "clear", size: "portrait" },
-  { path: "about.jpg", shot: "colonnade", sky: "clear", size: "landscape" },
-  { path: "contact.jpg", shot: "poolside", sky: "clear", size: "cinema" },
-  { path: "experience.jpg", shot: "threeQuarter", sky: "clear", size: "wide" },
-  { path: "og.jpg", shot: "approachWide", sky: "clear", size: "og" },
-  { path: "services/architecture.jpg", shot: "approachLow", sky: "clear", size: "portrait" },
-  { path: "services/interior-design.jpg", shot: "lowerOut", sky: "clear", size: "portrait" },
-  { path: "services/visualisation.jpg", shot: "aerial", sky: "soft", size: "portrait" },
-  { path: "services/project-management.jpg", shot: "slabEdge", sky: "soft", size: "portrait" },
+  { path: "hero-fallback.jpg", shot: "approachWide", sky: "clear", size: "wide", scheme: "contemporary-villa" },
+  { path: "architecture.jpg", shot: "frontal", sky: "clear", size: "portrait", scheme: "modern-residence" },
+  { path: "interiors.jpg", shot: "plateAxis", sky: "clear", size: "portrait", scheme: "luxury-interior" },
+  { path: "about.jpg", shot: "courtView", sky: "clear", size: "landscape", scheme: "courtyard-house" },
+  { path: "contact.jpg", shot: "poolside", sky: "clear", size: "cinema", scheme: "contemporary-villa" },
+  { path: "experience.jpg", shot: "raisedApproach", sky: "clear", size: "wide", scheme: "coastal-retreat" },
+  { path: "og.jpg", shot: "approachWide", sky: "clear", size: "og", scheme: "contemporary-villa" },
+  { path: "services/architecture.jpg", shot: "approachLow", sky: "clear", size: "portrait", scheme: "modern-residence" },
+  { path: "services/interior-design.jpg", shot: "plateWide", sky: "clear", size: "portrait", scheme: "luxury-interior" },
+  { path: "services/visualisation.jpg", shot: "aerial", sky: "soft", size: "portrait", scheme: "contemporary-villa" },
+  { path: "services/project-management.jpg", shot: "plateCorner", sky: "soft", size: "portrait", scheme: "corporate-workplace" },
 ];
 
 /* -------------------------------------------------------------------------- */
@@ -201,9 +253,13 @@ async function installRoutes(page) {
  * across 59 renders leaks GPU memory under SwiftShader and eventually loses
  * the context; rebuilding costs a second and never fails.
  */
-async function renderShot(page, { width, height, shot, sky, seed, sunAngle }) {
+async function renderShot(page, { width, height, shot, sky, seed, sunAngle, scheme }) {
+  // Supersample, then let the resize down to target do the anti-aliasing.
+  // MSAA alone leaves the mullions, louvre fins and foliage edges crawling,
+  // and those thin elements are most of what says "render" rather than "photo".
+  const scale = SUPERSAMPLE;
   const dataUrl = await page.evaluate(
-    async ({ width, height, shot, sky, seed, sunAngle }) => {
+    async ({ width, height, shot, sky, seed, sunAngle, scheme }) => {
       const THREE = await import("/three/three.module.js");
       const { buildScene } = await import("/scene/villa-scene.js");
 
@@ -223,10 +279,10 @@ async function renderShot(page, { width, height, shot, sky, seed, sunAngle }) {
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       renderer.toneMapping = THREE.ACESFilmicToneMapping;
-      renderer.toneMappingExposure = 1.15;
+      renderer.toneMappingExposure = 1.0;
       renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-      const scene = buildScene(renderer, { seed, sky, sunAngle });
+      const scene = buildScene(renderer, { seed, sky, sunAngle, scheme });
 
       const camera = new THREE.PerspectiveCamera(shot.fov, width / height, 0.1, 600);
       camera.position.set(...shot.position);
@@ -240,24 +296,85 @@ async function renderShot(page, { width, height, shot, sky, seed, sunAngle }) {
       canvas.remove();
       return url;
     },
-    { width, height, shot, sky, seed, sunAngle },
+    {
+      width: Math.round(width * scale),
+      height: Math.round(height * scale),
+      shot,
+      sky,
+      seed,
+      sunAngle,
+      scheme,
+    },
   );
 
   return Buffer.from(dataUrl.split(",")[1], "base64");
 }
 
+/** Corner falloff. Every real lens has some; a render has none at all. */
+function vignette(width, height) {
+  return Buffer.from(
+    `<svg width="${width}" height="${height}">` +
+      `<defs><radialGradient id="v" cx="50%" cy="46%" r="75%">` +
+      `<stop offset="52%" stop-color="#000" stop-opacity="0"/>` +
+      `<stop offset="100%" stop-color="#000" stop-opacity="0.34"/>` +
+      `</radialGradient></defs>` +
+      `<rect width="${width}" height="${height}" fill="url(#v)"/></svg>`,
+  );
+}
+
 /**
- * Photographic finish: a gentle lift, slight desaturation toward the site's
- * stone palette, and mild sharpening. Rendered output is clean to the point of
- * looking synthetic; this is what pulls it back toward a photograph.
+ * Sensor noise, as a mid-grey overlay. Deterministic per image so a rebuild
+ * does not silently churn every file.
  */
-async function grade(png, width, height, outPath) {
-  const buffer = await sharp(png)
-    .resize(width, height, { fit: "cover" })
-    .modulate({ brightness: 1.03, saturation: 0.9 })
-    .linear(1.04, 2)
-    .sharpen({ sigma: 0.6 })
-    .jpeg({ quality: 84, mozjpeg: true, chromaSubsampling: "4:4:4" })
+function grainLayer(width, height, seed) {
+  let a = seed >>> 0;
+  const next = () => {
+    a = (a + 0x6d2b79f5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+
+  const data = Buffer.allocUnsafe(width * height * 3);
+  for (let i = 0; i < width * height; i += 1) {
+    // Box-Muller would be more correct, but the average of two uniforms is
+    // close enough to Gaussian at this amplitude and much cheaper.
+    const v = 128 + ((next() + next()) / 2 - 0.5) * 26;
+    const b = v < 0 ? 0 : v > 255 ? 255 : v;
+    data[i * 3] = b;
+    data[i * 3 + 1] = b;
+    data[i * 3 + 2] = b;
+  }
+  return sharp(data, { raw: { width, height, channels: 3 } }).png().toBuffer();
+}
+
+/**
+ * Photographic finish. The render leaves the frame clean, evenly lit and
+ * corner-to-corner sharp — which is exactly what reads as synthetic. This puts
+ * back the things a camera adds: an S-curve, a warm/cool split between
+ * highlight and shadow, corner falloff and a little grain.
+ */
+async function grade(png, width, height, outPath, seed) {
+  const base = await sharp(png)
+    .resize(width, height, { fit: "cover", kernel: "lanczos3" })
+    // Contrast and a warm/cool split in one per-channel curve: red gains a
+    // little, blue is lifted at the toe and held back at the top, so highlights
+    // run warm and shadows keep the sky in them. Note `.tint()` would not do
+    // this — it discards chroma and returns a single-hue image.
+    .linear([1.15, 1.12, 1.06], [-14, -13, -7])
+    .gamma(1.05)
+    // Pull saturation back toward the site's stone palette.
+    .modulate({ saturation: 0.86 })
+    .toColourspace("srgb")
+    .toBuffer();
+
+  const buffer = await sharp(base)
+    .composite([
+      { input: vignette(width, height), blend: "over" },
+      { input: await grainLayer(width, height, seed), blend: "overlay" },
+    ])
+    .sharpen({ sigma: 0.7, m1: 0.4, m2: 2.2 })
+    .jpeg({ quality: 90, mozjpeg: true, chromaSubsampling: "4:4:4" })
     .toBuffer();
 
   await mkdir(dirname(outPath), { recursive: true });
@@ -269,11 +386,15 @@ async function grade(png, width, height, outPath) {
 /* Main                                                                        */
 /* -------------------------------------------------------------------------- */
 
-/** Deterministic sun angle per image, so the set is not uniformly lit. */
-function sunAngleFor(seed) {
+function hash(seed) {
   let h = 0;
   for (let i = 0; i < seed.length; i += 1) h = (h * 31 + seed.charCodeAt(i)) >>> 0;
-  return 0.25 + (h % 1000) / 1000 * 1.1;
+  return h;
+}
+
+/** Deterministic sun angle per image, so the set is not uniformly lit. */
+function sunAngleFor(seed) {
+  return 0.25 + ((hash(seed) % 1000) / 1000) * 1.1;
 }
 
 async function main() {
@@ -305,6 +426,8 @@ async function main() {
         size: SIZES[roleSizes[i]],
         out: join(outRoot, "projects", slug, `${roleNames[i]}.jpg`),
         label: `${slug}/${roleNames[i]}`,
+        // Scheme keys match project slugs, so each project builds its own design.
+        scheme: slug,
       });
     });
   }
@@ -318,7 +441,21 @@ async function main() {
       size: SIZES[item.size],
       out: join(outRoot, item.path),
       label: item.path,
+      scheme: item.scheme,
     });
+  }
+
+  // Optional substring filters: `npm run assets -- coastal penthouse` renders
+  // only the matching images. Rendering all of them takes twenty minutes on
+  // SwiftShader, which is too slow a loop when you are iterating on one scheme.
+  const filters = process.argv.slice(2).filter((a) => !a.startsWith("-"));
+  if (filters.length) {
+    // Only touch `jobs` when actually filtering. Assigning the unfiltered list
+    // back to itself and then clearing it empties both — they are one array.
+    const selected = jobs.filter((j) => filters.some((f) => j.label.includes(f)));
+    process.stdout.write(`  filtered to ${selected.length}/${jobs.length} images\n`);
+    jobs.length = 0;
+    jobs.push(...selected);
   }
 
   let bytes = 0;
@@ -333,9 +470,10 @@ async function main() {
       sky: job.sky,
       seed: job.seed,
       sunAngle: sunAngleFor(job.seed),
+      scheme: job.scheme,
     });
 
-    bytes += await grade(png, width, height, job.out);
+    bytes += await grade(png, width, height, job.out, hash(job.seed));
     process.stdout.write(
       `  [${String(i + 1).padStart(2)}/${jobs.length}] ${job.label} (${job.shotName})\n`,
     );
