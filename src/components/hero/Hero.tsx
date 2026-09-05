@@ -50,14 +50,10 @@ export function Hero() {
           progress={progress}
         />
 
-        {/* Section 11 UI protection: Subtle text column scrim */}
+        {/* White paper gradient matching ProjectExperience */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-10"
-          style={{
-            background:
-              "linear-gradient(105deg, rgba(20,18,16,0.34) 0%, rgba(20,18,16,0.10) 42%, transparent 62%)",
-          }}
+          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-paper via-transparent to-paper/70"
         />
 
         <HeroContent sectionRef={section} />
