@@ -17,6 +17,8 @@ const eslintConfig = [
       "next-env.d.ts",
       "sanity/**",
       "scripts/**",
+      "reports/**",
+      "public/**",
     ],
   },
   ...nextCoreWebVitals,

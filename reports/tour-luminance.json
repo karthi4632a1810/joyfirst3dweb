@@ -1,0 +1,362 @@
+[
+  {
+    "index": 0,
+    "frame": "00.png",
+    "scroll": 0,
+    "meanLuminance": 0.514,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 1,
+    "frame": "01.png",
+    "scroll": 0.07,
+    "meanLuminance": 0.515,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 2,
+    "frame": "02.png",
+    "scroll": 0.13,
+    "meanLuminance": 0.513,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 3,
+    "frame": "03.png",
+    "scroll": 0.19,
+    "meanLuminance": 0.506,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 4,
+    "frame": "04.png",
+    "scroll": 0.24,
+    "meanLuminance": 0.478,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 5,
+    "frame": "05.png",
+    "scroll": 0.28,
+    "meanLuminance": 0.466,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 6,
+    "frame": "06.png",
+    "scroll": 0.34,
+    "meanLuminance": 0.389,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 7,
+    "frame": "07.png",
+    "scroll": 0.41,
+    "meanLuminance": 0.744,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 8,
+    "frame": "08.png",
+    "scroll": 0.49,
+    "meanLuminance": 0.336,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 9,
+    "frame": "09.png",
+    "scroll": 0.57,
+    "meanLuminance": 0.677,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 10,
+    "frame": "10.png",
+    "scroll": 0.61,
+    "meanLuminance": 0.348,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 11,
+    "frame": "11.png",
+    "scroll": 0.68,
+    "meanLuminance": 0.61,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 12,
+    "frame": "12.png",
+    "scroll": 0.74,
+    "meanLuminance": 0.601,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 13,
+    "frame": "13.png",
+    "scroll": 0.79,
+    "meanLuminance": 0.64,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 14,
+    "frame": "14.png",
+    "scroll": 0.83,
+    "meanLuminance": 0.469,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 15,
+    "frame": "15.png",
+    "scroll": 0.89,
+    "meanLuminance": 0.542,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 16,
+    "frame": "16.png",
+    "scroll": 0.93,
+    "meanLuminance": 0.546,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 17,
+    "frame": "17.png",
+    "scroll": 0.95,
+    "meanLuminance": 0.546,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 18,
+    "frame": "18.png",
+    "scroll": 0.98,
+    "meanLuminance": 0.547,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  },
+  {
+    "index": 19,
+    "frame": "19.png",
+    "scroll": 1,
+    "meanLuminance": 0.547,
+    "pass": true,
+    "zone": "01 / EXTERIOR APPROACH",
+    "cameraPos": [
+      14,
+      7.5,
+      26
+    ],
+    "cameraTarget": [
+      0,
+      3.2,
+      0
+    ]
+  }
+]

@@ -6,37 +6,29 @@ import { Suspense } from "react";
 import * as THREE from "three";
 
 import { CameraController } from "@/components/three/CameraController";
-import type { CameraKeyframe } from "@/lib/camera";
 import { Lighting } from "@/components/three/Lighting";
 import { ModelLoader } from "@/components/three/ModelLoader";
+import { PostProcessing } from "@/components/three/PostProcessing";
 import { tierSupports3D, usePerformanceTier } from "@/lib/device";
 import { useReducedMotion } from "@/lib/hooks";
 import { usePointerRef } from "@/lib/useScrollProgress";
 
 interface ArchitectureSceneProps {
-  keyframes: CameraKeyframe[];
   progress: React.RefObject<number>;
   /** Optional GLB. Falls back to the procedural villa when absent or broken. */
   modelSrc?: string;
   className?: string;
+  keyframes?: unknown;
 }
 
 /**
- * The R3F canvas, with its capability gate.
- *
- * Three tiers:
- *   desktop — full geometry, shadow maps, DPR up to 1.75
- *   mobile  — reduced geometry, no shadows, DPR capped at 1.25
- *   none/low — renders nothing at all
- *
- * On that last branch it returns null rather than an image, because every
- * caller already paints <ModelFallback /> as a server-rendered base layer
- * underneath. The canvas is opaque, so when 3D is available it simply covers
- * that photograph — and when it is not, the photograph is what stays. Nothing
- * has to detect anything for the page to look finished.
+ * The R3F Canvas configured per Section 2.1 and Section 7.
+ * - ACES Filmic Tone Mapping with exposure 0.92
+ * - Fixed 42 deg FOV architectural camera lens (near 0.05, far 200)
+ * - PCF Soft Shadow Map
+ * - SMAA + N8AO + Dynamic DepthOfField + Bloom + Vignette post-processing chain
  */
 export function ArchitectureScene({
-  keyframes,
   progress,
   modelSrc,
   className = "",
@@ -52,27 +44,28 @@ export function ArchitectureScene({
   return (
     <div className={className}>
       <Canvas
-        // The camera is positioned by CameraController on its first frame; this
-        // is only the starting point before that runs.
-        camera={{ position: keyframes[0]?.position ?? [16, 9, 34], fov: keyframes[0]?.fov ?? 36, near: 0.1, far: 220 }}
+        camera={{ position: [14.0, 7.5, 26.0], fov: 42, near: 0.05, far: 200 }}
         dpr={high ? [1, 1.75] : [1, 1.25]}
         shadows={high ? "soft" : false}
         gl={{
-          antialias: high,
+          antialias: false, // Antialiasing handled by SMAA post-processing
           alpha: false,
           powerPreference: "high-performance",
-          toneMapping: THREE.ACESFilmicToneMapping,
-          toneMappingExposure: 1.15,
+          preserveDrawingBuffer: true,
         }}
-        // Nothing in the scene is interactive, so the canvas stays out of the
-        // way of text selection and the custom cursor.
+        onCreated={({ gl }) => {
+          gl.outputColorSpace = THREE.SRGBColorSpace;
+          gl.toneMapping = THREE.ACESFilmicToneMapping;
+          gl.toneMappingExposure = 0.92;
+          gl.shadowMap.enabled = true;
+          gl.shadowMap.type = THREE.PCFSoftShadowMap;
+        }}
         style={{ pointerEvents: "none" }}
         frameloop={reducedMotion ? "demand" : "always"}
       >
-        {/* Daylight sky, slightly cooler than the page so the building reads
-            against it, with fog carrying the same tone into the distance. */}
-        <color attach="background" args={["#dfe3e7"]} />
-        <fog attach="fog" args={["#dfe3e7", 40, 130]} />
+        {/* Exterior sky backdrop with gentle distance fog that fades on interior entry (§2.3) */}
+        <color attach="background" args={["#c0c7ce"]} />
+        <fog attach="fog" args={["#b8b3aa", 45, 160]} />
 
         <Suspense fallback={null}>
           <Lighting quality={high ? "high" : "low"} />
@@ -83,17 +76,17 @@ export function ArchitectureScene({
             reducedMotion={reducedMotion}
             castShadows={high}
           />
+          <PostProcessing quality={high ? "high" : "low"} />
           <Preload all />
         </Suspense>
 
         <CameraController
-          keyframes={keyframes}
           progress={progress}
           pointer={pointer}
           reducedMotion={reducedMotion}
         />
 
-        {/* Drops resolution automatically if the frame rate falls. */}
+        {/* Drops resolution automatically if frame rate drops */}
         <AdaptiveDpr pixelated={false} />
       </Canvas>
     </div>

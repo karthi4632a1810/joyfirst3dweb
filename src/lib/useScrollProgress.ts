@@ -26,17 +26,32 @@ export function useScrollProgress(
     const element = target.current;
     if (!element) return;
 
+    const updateFromBounds = () => {
+      if (!element) return;
+      const rect = element.getBoundingClientRect();
+      const total = rect.height - window.innerHeight;
+      if (total > 0) {
+        progress.current = Math.max(0, Math.min(1, -rect.top / total));
+      }
+    };
+
+    window.addEventListener("scroll", updateFromBounds, { passive: true });
+    updateFromBounds();
+
     const trigger = ScrollTrigger.create({
       trigger: element,
       start,
       end,
       scrub: true,
-      onUpdate: (self) => {
-        progress.current = self.progress;
+      onUpdate: () => {
+        updateFromBounds();
       },
     });
 
-    return () => trigger.kill();
+    return () => {
+      window.removeEventListener("scroll", updateFromBounds);
+      trigger.kill();
+    };
   }, [target, start, end]);
 
   return progress;

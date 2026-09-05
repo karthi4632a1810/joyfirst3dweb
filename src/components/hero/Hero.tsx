@@ -3,7 +3,6 @@
 import dynamic from "next/dynamic";
 import { useRef } from "react";
 
-import { HERO_KEYFRAMES } from "@/lib/camera";
 import { ModelFallback } from "@/components/three/ModelFallback";
 import { useScrollProgress } from "@/lib/useScrollProgress";
 
@@ -37,7 +36,7 @@ export function Hero() {
     <section
       ref={section}
       aria-label="Introduction"
-      className="relative h-[240vh] md:h-[320vh]"
+      className="relative h-[480vh] md:h-[680vh]"
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-bone">
         {/* Server-rendered base layer. This is the LCP element: it paints
@@ -48,18 +47,17 @@ export function Hero() {
 
         <ArchitectureScene
           className="absolute inset-0 h-full w-full"
-          keyframes={HERO_KEYFRAMES}
           progress={progress}
         />
 
-        {/* Grading over the scene: darker at the edges, so the type holds. */}
+        {/* Section 11 UI protection: Subtle text column scrim */}
         <div
           aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-paper via-paper/25 to-paper/10"
-        />
-        <div
-          aria-hidden="true"
-          className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-r from-paper/80 via-paper/20 to-transparent"
+          className="pointer-events-none absolute inset-0 z-10"
+          style={{
+            background:
+              "linear-gradient(105deg, rgba(20,18,16,0.34) 0%, rgba(20,18,16,0.10) 42%, transparent 62%)",
+          }}
         />
 
         <HeroContent sectionRef={section} />
