@@ -275,4 +275,4 @@ public/
 └── models/           Drop GLB files here
 ```
 #   j o y f i r s t  
- 
+ "# joyfirst3dweb" 
