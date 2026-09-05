@@ -18,7 +18,7 @@ export function IntroSection() {
         <RevealText
           as="h2"
           id="intro-heading"
-          className="text-display max-w-[16ch] text-ink"
+          className="text-display max-w-[26ch] text-ink leading-[1.06]"
           lines={[
             "We don't just design",
             <span key="b" className="text-stone">
