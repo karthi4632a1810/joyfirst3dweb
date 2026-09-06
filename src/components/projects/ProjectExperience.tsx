@@ -74,8 +74,10 @@ export function ProjectExperience({
     <section
       ref={section}
       aria-labelledby="experience-heading"
-      className="relative h-[320vh] bg-paper md:h-[500vh]"
+      className="relative h-[300svh] bg-paper md:h-[500svh]"
     >
+      {/* svh keeps the 5-stop walkthrough length stable as the iOS URL bar
+          shows/hides; vh would stretch/shrink the scrub distance mid-scroll. */}
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden">
         {/* Server-rendered base layer; the opaque canvas covers it when 3D
             is available, and it is what remains when it is not. */}
@@ -95,10 +97,10 @@ export function ProjectExperience({
           className="pointer-events-none absolute inset-0 z-10 bg-gradient-to-t from-paper via-transparent to-paper/70"
         />
 
-        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-between py-[clamp(5rem,12vh,8rem)]">
+        <div className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-between py-[clamp(5rem,12vh,8rem)] pb-[max(clamp(5rem,12vh,8rem),env(safe-area-inset-bottom))]">
           <div className="container-arch">
             <p className="label-arch mb-5 text-bronze">{eyebrow}</p>
-            <h2 id="experience-heading" className="text-headline max-w-[12ch] text-ink">
+            <h2 id="experience-heading" className="text-headline max-w-[12ch] break-words text-ink">
               {heading}
             </h2>
           </div>
@@ -139,7 +141,7 @@ export function ProjectExperience({
                 </p>
                 <p
                   key={stage}
-                  className="max-w-[40ch] text-lede text-graphite motion-safe:animate-[stageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
+                  className="max-w-[40ch] break-words text-lede text-graphite motion-safe:animate-[stageIn_0.7s_cubic-bezier(0.22,1,0.36,1)_both]"
                 >
                   {STAGES[stage].body}
                 </p>

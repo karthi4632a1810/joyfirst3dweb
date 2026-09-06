@@ -87,6 +87,7 @@ export const viewport: Viewport = {
   initialScale: 1,
   // Zoom is left enabled — capping it fails WCAG 1.4.4.
   maximumScale: 5,
+  viewportFit: "cover",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
@@ -101,7 +102,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <noscript>
           <style>{`
             [data-reveal],
-            [data-hero-meta] { opacity: 1 !important; transform: none !important; }
+            [data-hero-meta],
+            [data-page-transition] { opacity: 1 !important; transform: none !important; }
             .reveal-line > span { transform: none !important; opacity: 1 !important; }
           `}</style>
         </noscript>
@@ -117,7 +119,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         <a
           href="#main"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-6 focus:top-6 focus:z-[100] focus:bg-ink focus:px-5 focus:py-3 focus:text-[0.8125rem] focus:uppercase focus:tracking-[0.14em] focus:text-paper"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-[max(1.5rem,env(safe-area-inset-left))] focus:top-[max(1.5rem,env(safe-area-inset-top))] focus:z-[100] focus:bg-ink focus:px-5 focus:py-3 focus:text-[0.8125rem] focus:uppercase focus:tracking-[0.14em] focus:text-paper"
         >
           Skip to content
         </a>

@@ -75,7 +75,7 @@ export function ProcessSection({ steps }: { steps: ProcessStep[] }) {
           <RevealText
             as="h2"
             id="process-heading"
-            className="text-headline mb-[clamp(3rem,8vh,5rem)] max-w-[18ch] text-ink"
+            className="text-headline mb-[clamp(3rem,8vh,5rem)] max-w-[18ch] break-words text-ink"
             lines={["How a project", "actually happens."]}
           />
         </div>
@@ -94,10 +94,10 @@ export function ProcessSection({ steps }: { steps: ProcessStep[] }) {
                 <p className="mb-8 text-[0.75rem] uppercase tracking-[0.2em] text-bronze">
                   {step.index}
                 </p>
-                <h3 className="text-[clamp(1.75rem,4vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.03em] text-ink">
+                <h3 className="break-words text-[clamp(1.75rem,4vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.03em] text-ink">
                   {step.title}
                 </h3>
-                <p className="mt-6 max-w-[42ch] text-[0.9375rem] leading-relaxed text-stone">
+                <p className="mt-6 max-w-[42ch] break-words text-[0.9375rem] leading-relaxed text-stone">
                   {step.body}
                 </p>
               </article>

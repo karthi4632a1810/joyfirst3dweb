@@ -22,11 +22,13 @@ const ArchitectureScene = dynamic(
 /**
  * Full-screen 3D hero.
  *
- * The section is three viewports tall and the visible frame is sticky inside
- * it, so scrolling the section drives the camera from a wide exterior shot to
- * the interior without pinning anything. Pinning through Lenis is where most
- * "the page won't scroll" bugs come from; sticky positioning has none of that
- * fragility and degrades correctly when JavaScript is unavailable.
+ * The section is 380svh tall on mobile (680svh on desktop) and the visible
+ * frame is sticky inside it, so scrolling the section drives the camera from
+ * a wide exterior shot to the interior without pinning anything. Pinning
+ * through Lenis is where most "the page won't scroll" bugs come from; sticky
+ * positioning has none of that fragility and degrades correctly when
+ * JavaScript is unavailable. svh units keep the sticky frame stable while
+ * the iOS URL bar collapses.
  */
 export function Hero() {
   const section = useRef<HTMLElement>(null);
@@ -36,7 +38,7 @@ export function Hero() {
     <section
       ref={section}
       aria-label="Introduction"
-      className="relative h-[480vh] md:h-[680vh]"
+      className="relative h-[380svh] md:h-[680svh]"
     >
       <div className="sticky top-0 h-[100svh] w-full overflow-hidden bg-bone">
         {/* Server-rendered base layer. This is the LCP element: it paints

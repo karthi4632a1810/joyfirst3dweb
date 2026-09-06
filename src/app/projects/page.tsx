@@ -47,7 +47,7 @@ export default async function ProjectsPage() {
         <Reveal>
           <h2
             id="all-projects-heading"
-            className="text-headline mb-[clamp(2.5rem,6vh,4rem)] text-ink"
+            className="text-headline mb-[clamp(2.5rem,6vh,4rem)] break-words text-ink"
           >
             All projects
           </h2>

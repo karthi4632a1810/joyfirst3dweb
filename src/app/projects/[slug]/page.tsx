@@ -96,7 +96,7 @@ export default async function ProjectPage({ params }: PageProps) {
             <p className="label-arch mb-6 text-bronze">{project.category}</p>
             <RevealText
               as="h1"
-              className="text-display max-w-[14ch] text-ink"
+              className="text-display max-w-[14ch] break-words text-ink"
               lines={[project.title]}
               immediate
             />
@@ -130,7 +130,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </h2>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="mt-8 max-w-[34ch] text-title text-ink">
+              <p className="mt-8 max-w-[34ch] break-words text-title text-ink">
                 {project.summary}
               </p>
             </Reveal>
@@ -139,7 +139,7 @@ export default async function ProjectPage({ params }: PageProps) {
           <div className="md:col-span-7 md:col-start-6">
             {project.description.map((paragraph, i) => (
               <Reveal key={i} delay={i * 0.06}>
-                <p className="mb-6 max-w-[60ch] text-lede text-graphite last:mb-0">
+                <p className="mb-6 max-w-[60ch] break-words text-lede text-graphite last:mb-0">
                   {paragraph}
                 </p>
               </Reveal>
@@ -187,7 +187,7 @@ export default async function ProjectPage({ params }: PageProps) {
           className="container-arch pb-[clamp(5rem,12vh,8rem)]"
         >
           <div className="mb-[clamp(2.5rem,6vh,4rem)] flex flex-wrap items-end justify-between gap-6">
-            <h2 id="related-heading" className="text-headline text-ink">
+            <h2 id="related-heading" className="text-headline break-words text-ink">
               More work
             </h2>
             <ArrowLink href="/projects">All projects</ArrowLink>
@@ -215,9 +215,9 @@ export default async function ProjectPage({ params }: PageProps) {
 
 function Fact({ label, value }: { label: string; value: string }) {
   return (
-    <div>
+    <div className="min-w-0">
       <dt className="label-arch mb-3 text-stone">{label}</dt>
-      <dd className="text-[0.9375rem] leading-relaxed text-ink">{value}</dd>
+      <dd className="break-words text-[0.9375rem] leading-relaxed text-ink">{value}</dd>
     </div>
   );
 }

@@ -41,30 +41,30 @@ export default function ContactPage() {
             <Reveal>
               <div className="border-t border-line pt-8">
                 <p className="label-arch mb-5 text-stone">Speak to us</p>
-                <ul className="flex flex-col gap-3">
-                  <li>
+                <ul className="flex min-w-0 flex-col gap-1">
+                  <li className="min-w-0">
                     <a
                       href={`tel:${site.contact.phone.replace(/\s/g, "")}`}
                       data-cursor="hover"
-                      className="text-[1.125rem] text-ink transition-colors duration-500 hover:text-bronze"
+                      className="inline-block min-h-[44px] touch-manipulation break-words py-1.5 text-[1.125rem] text-ink transition-colors duration-500 hover:text-bronze"
                     >
                       {site.contact.phone}
                     </a>
                   </li>
-                  <li>
+                  <li className="min-w-0">
                     <a
                       href={`tel:${site.contact.phoneSecondary.replace(/\s/g, "")}`}
                       data-cursor="hover"
-                      className="text-[1.125rem] text-graphite transition-colors duration-500 hover:text-bronze"
+                      className="inline-block min-h-[44px] touch-manipulation break-words py-1.5 text-[1.125rem] text-graphite transition-colors duration-500 hover:text-bronze"
                     >
                       {site.contact.phoneSecondary}
                     </a>
                   </li>
-                  <li>
+                  <li className="min-w-0">
                     <a
                       href={`tel:${site.contact.landline.replace(/\s/g, "")}`}
                       data-cursor="hover"
-                      className="text-[1.125rem] text-graphite transition-colors duration-500 hover:text-bronze"
+                      className="inline-block min-h-[44px] touch-manipulation break-words py-1.5 text-[1.125rem] text-graphite transition-colors duration-500 hover:text-bronze"
                     >
                       {site.contact.landline}
                     </a>
@@ -76,21 +76,21 @@ export default function ContactPage() {
             <Reveal delay={0.08}>
               <div className="mt-10 border-t border-line pt-8">
                 <p className="label-arch mb-5 text-stone">Email</p>
-                <ul className="flex flex-col gap-3">
-                  <li>
+                <ul className="flex min-w-0 flex-col gap-1">
+                  <li className="min-w-0">
                     <a
                       href={`mailto:${site.contact.email}`}
                       data-cursor="hover"
-                      className="text-[1.0625rem] text-ink transition-colors duration-500 hover:text-bronze"
+                      className="inline-block min-h-[44px] touch-manipulation break-words py-1.5 text-[1.0625rem] text-ink transition-colors duration-500 hover:text-bronze"
                     >
                       {site.contact.email}
                     </a>
                   </li>
-                  <li>
+                  <li className="min-w-0">
                     <a
                       href={`mailto:${site.contact.emailSecondary}`}
                       data-cursor="hover"
-                      className="text-[1.0625rem] text-graphite transition-colors duration-500 hover:text-bronze"
+                      className="inline-block min-h-[44px] touch-manipulation break-words py-1.5 text-[1.0625rem] text-graphite transition-colors duration-500 hover:text-bronze"
                     >
                       {site.contact.emailSecondary}
                     </a>
@@ -117,7 +117,7 @@ export default function ContactPage() {
             <Reveal delay={0.28}>
               <div className="mt-10 border-t border-line pt-8">
                 <p className="label-arch mb-5 text-stone">Follow</p>
-                <ul className="flex flex-wrap gap-x-6 gap-y-3">
+                <ul className="flex flex-wrap gap-x-6 gap-y-1">
                   {site.social.map((item) => (
                     <li key={item.href}>
                       <a
@@ -125,7 +125,7 @@ export default function ContactPage() {
                         target="_blank"
                         rel="noreferrer noopener"
                         data-cursor="hover"
-                        className="text-[0.8125rem] uppercase tracking-[0.14em] text-graphite transition-colors duration-500 hover:text-bronze"
+                        className="inline-block min-h-[44px] touch-manipulation py-1.5 text-[0.8125rem] uppercase tracking-[0.14em] text-graphite transition-colors duration-500 hover:text-bronze"
                       >
                         {item.label}
                       </a>

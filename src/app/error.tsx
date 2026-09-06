@@ -43,7 +43,7 @@ export default function Error({
           type="button"
           onClick={reset}
           data-cursor="open"
-          className="inline-flex items-center gap-4 border border-ink/25 px-9 py-5 text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:border-bronze hover:text-bronze"
+          className="inline-flex min-h-[44px] touch-manipulation items-center gap-4 border border-ink/25 px-9 py-5 text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:border-bronze hover:text-bronze"
         >
           Try again
         </button>

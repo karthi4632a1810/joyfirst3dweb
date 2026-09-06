@@ -48,7 +48,7 @@ export function ServicesSection({ services }: { services: Service[] }) {
         <RevealText
           as="h2"
           id="services-heading"
-          className="text-headline mb-[clamp(3rem,8vh,5rem)] max-w-[16ch] text-ink"
+          className="text-headline mb-[clamp(3rem,8vh,5rem)] max-w-[16ch] break-words text-ink"
           lines={["What we do,", "end to end."]}
         />
 
@@ -61,24 +61,24 @@ export function ServicesSection({ services }: { services: Service[] }) {
                 onPointerEnter={() => setActive(i)}
                 onFocus={() => setActive(i)}
                 onBlur={() => setActive(null)}
-                className="group grid grid-cols-[auto_1fr_auto] items-center gap-x-6 border-t border-line py-[clamp(1.75rem,4vw,2.75rem)] transition-colors duration-500 last:border-b hover:border-bronze/50 md:gap-x-12"
+                className="group grid min-h-[44px] min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-4 border-t border-line py-[clamp(1.75rem,4vw,2.75rem)] transition-colors duration-500 last:border-b hover:border-bronze/50 md:gap-x-12"
               >
                 <span className="text-[0.75rem] uppercase tracking-[0.18em] text-stone transition-colors duration-500 group-hover:text-bronze">
                   {service.index}
                 </span>
 
-                <div>
-                  <h3 className="text-[clamp(1.5rem,4vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.025em] text-ink transition-colors duration-500 group-hover:text-bronze">
+                <div className="min-w-0">
+                  <h3 className="break-words text-[clamp(1.375rem,6vw,2.75rem)] font-medium leading-[1.05] tracking-[-0.025em] text-ink transition-colors duration-500 group-hover:text-bronze">
                     {service.title}
                   </h3>
-                  <p className="mt-3 max-w-[46ch] text-[0.875rem] leading-relaxed text-stone">
+                  <p className="mt-3 max-w-[46ch] break-words text-[0.875rem] leading-relaxed text-stone">
                     {service.capabilities.join(" · ")}
                   </p>
                 </div>
 
                 <span
                   aria-hidden="true"
-                  className="block h-3 w-6 text-stone transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2 group-hover:text-bronze"
+                  className="block h-3 w-6 shrink-0 text-stone transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2 group-hover:text-bronze"
                 >
                   <svg viewBox="0 0 20 14" fill="none" className="h-full w-full">
                     <path

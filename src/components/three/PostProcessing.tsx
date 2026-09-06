@@ -44,6 +44,21 @@ export function PostProcessing({ quality }: PostProcessingProps) {
     }
   });
 
+  // Mobile / low tier: skip ambient occlusion, depth-of-field and bloom.
+  // These are the most expensive passes and the least visible on a small,
+  // bright screen — keep only lens grading + antialiasing.
+  if (!high) {
+    return (
+      <EffectComposer multisampling={0} enableNormalPass={false}>
+        {/* 4. Vignette for architectural lens grading */}
+        <Vignette offset={0.28} darkness={0.42} />
+
+        {/* 5. Subpixel Morphological Antialiasing */}
+        <SMAA />
+      </EffectComposer>
+    );
+  }
+
   return (
     <EffectComposer multisampling={0} enableNormalPass>
       {/* 1. N8AO Contact Shadows — verified deep dark contact shadows */}

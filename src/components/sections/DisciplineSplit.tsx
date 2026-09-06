@@ -139,9 +139,9 @@ function Panel({ panel, index, active, animate, onActivate }: PanelProps) {
         }`}
       />
 
-      <div className="relative z-10 px-[var(--spacing-gutter)] text-center">
+      <div className="relative z-10 min-w-0 px-[var(--spacing-gutter)] text-center">
         <h2
-          className={`text-display text-ink transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
+          className={`text-display break-words text-ink transition-transform duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${
             isActive ? "md:-translate-y-3" : ""
           }`}
         >
@@ -151,7 +151,7 @@ function Panel({ panel, index, active, animate, onActivate }: PanelProps) {
         <p
           data-panel-caption
           style={animate ? { opacity: 0, transform: "translateY(16px)" } : undefined}
-          className="mx-auto mt-6 max-w-[34ch] text-[0.9375rem] leading-relaxed text-graphite"
+          className="mx-auto mt-6 max-w-[34ch] break-words text-balance text-[0.9375rem] leading-relaxed text-graphite"
         >
           {panel.caption}
         </p>

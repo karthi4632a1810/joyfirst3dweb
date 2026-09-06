@@ -12,7 +12,7 @@ export default function NotFound() {
     <section className="container-arch flex min-h-[80svh] flex-col justify-center py-[clamp(8rem,20vh,13rem)]">
       <p className="label-arch mb-8 text-bronze">404</p>
 
-      <h1 className="text-display max-w-[16ch] text-ink">
+      <h1 className="text-display max-w-[16ch] break-words text-ink">
         This page isn&rsquo;t here.
       </h1>
 

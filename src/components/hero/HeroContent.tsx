@@ -73,7 +73,7 @@ export function HeroContent({ sectionRef }: HeroContentProps) {
   return (
     <div
       ref={root}
-      className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end pb-[clamp(3rem,10vh,7rem)]"
+      className="pointer-events-none absolute inset-0 z-20 flex flex-col justify-end pb-[max(clamp(3rem,10vh,7rem),env(safe-area-inset-bottom))]"
     >
       <div className="container-arch">
         <p
@@ -85,7 +85,7 @@ export function HeroContent({ sectionRef }: HeroContentProps) {
           <span className="text-graphite">Chennai, India</span>
         </p>
 
-        <h1 className="text-display max-w-[18ch] text-ink">
+        <h1 className="text-display max-w-[18ch] break-words text-ink">
           <span className="reveal-line">
             <span>Architecture</span>
           </span>
@@ -97,7 +97,7 @@ export function HeroContent({ sectionRef }: HeroContentProps) {
         <div className="mt-[clamp(2rem,5vh,3.5rem)] flex flex-col gap-8 sm:flex-row sm:items-end sm:justify-between">
           <p
             data-hero-meta
-            className="pointer-events-auto max-w-[42ch] text-lede text-graphite opacity-0"
+            className="pointer-events-auto max-w-[42ch] break-words text-lede text-graphite opacity-0"
           >
             {site.description}
           </p>

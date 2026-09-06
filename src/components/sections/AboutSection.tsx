@@ -38,20 +38,20 @@ export function AboutSection() {
             <RevealText
               as="h2"
               id="about-heading"
-              className="text-headline max-w-[14ch] text-ink"
+              className="text-headline max-w-[14ch] break-words text-ink"
               lines={["Designed with purpose.", "Built for life."]}
             />
 
-            <Reveal delay={0.1}>
-              <p className="mt-[clamp(2rem,5vh,3rem)] max-w-[46ch] text-lede text-graphite">
+            <Reveal delay={0.1} className="min-w-0">
+              <p className="mt-[clamp(2rem,5vh,3rem)] max-w-[46ch] break-words text-lede text-graphite">
                 {site.legalName} is a Chennai studio working across architecture,
                 interiors and turnkey delivery — founded by {site.founder} and
                 working on projects from Tamil Nadu to Punjab.
               </p>
             </Reveal>
 
-            <Reveal delay={0.16}>
-              <p className="mt-6 max-w-[52ch] text-[0.9375rem] leading-relaxed text-stone">
+            <Reveal delay={0.16} className="min-w-0">
+              <p className="mt-6 max-w-[52ch] break-words text-[0.9375rem] leading-relaxed text-stone">
                 Because design and execution sit under one roof, the drawing that
                 gets approved is the thing that gets built. Our civil, HVAC,
                 electrical, fire-detection and networking teams work to the same
@@ -88,7 +88,7 @@ export function AboutSection() {
               sizes="(max-width: 768px) 100vw, 50vw"
             />
 
-            <dl className="mt-[clamp(2.5rem,6vw,4rem)] grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-3">
+            <dl className="mt-[clamp(2.5rem,6vw,4rem)] grid grid-cols-1 gap-x-8 gap-y-10 min-[26.25rem]:grid-cols-2 sm:grid-cols-3">
               {PILLARS.map((pillar, i) => (
                 <Reveal key={pillar.title} delay={i * 0.08} className="col-span-1">
                   <dt className="text-[0.9375rem] font-medium text-ink">

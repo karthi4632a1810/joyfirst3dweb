@@ -25,14 +25,14 @@ export function PageHeader({ eyebrow, lines, intro, meta }: PageHeaderProps) {
 
       <RevealText
         as="h1"
-        className="text-display max-w-[16ch] text-ink"
+        className="text-display max-w-[16ch] break-words text-ink"
         lines={lines}
         immediate
       />
 
       {intro && (
         <Reveal delay={0.15}>
-          <p className="mt-[clamp(2rem,5vh,3rem)] max-w-[52ch] text-lede text-graphite">
+          <p className="mt-[clamp(2rem,5vh,3rem)] max-w-[52ch] break-words text-lede text-graphite">
             {intro}
           </p>
         </Reveal>
@@ -42,9 +42,9 @@ export function PageHeader({ eyebrow, lines, intro, meta }: PageHeaderProps) {
         <Reveal delay={0.22}>
           <dl className="mt-[clamp(3rem,7vh,4.5rem)] grid gap-x-8 gap-y-8 border-t border-line pt-8 sm:grid-cols-2 lg:grid-cols-4">
             {meta.map((item) => (
-              <div key={item.label}>
+              <div key={item.label} className="min-w-0">
                 <dt className="label-arch mb-3 text-stone">{item.label}</dt>
-                <dd className="text-[0.9375rem] leading-relaxed text-ink">
+                <dd className="break-words text-[0.9375rem] leading-relaxed text-ink">
                   {item.value}
                 </dd>
               </div>

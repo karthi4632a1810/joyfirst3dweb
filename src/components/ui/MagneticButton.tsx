@@ -96,8 +96,8 @@ export function ArrowLink({
 
   const base =
     variant === "solid"
-      ? "inline-flex items-center justify-center border border-ink/25 px-8 py-5 text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:border-bronze hover:text-bronze"
-      : "inline-flex items-center text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:text-bronze";
+      ? "inline-flex min-h-[44px] touch-manipulation items-center justify-center border border-ink/25 px-8 py-5 text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:border-bronze hover:text-bronze"
+      : "inline-flex min-h-[44px] touch-manipulation items-center text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:text-bronze";
 
   const classes = `${base} ${className}`;
 

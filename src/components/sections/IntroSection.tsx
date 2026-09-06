@@ -18,7 +18,7 @@ export function IntroSection() {
         <RevealText
           as="h2"
           id="intro-heading"
-          className="text-display max-w-[26ch] text-ink leading-[1.06]"
+          className="text-display max-w-[26ch] break-words text-ink leading-[1.06]"
           lines={[
             "We don't just design",
             <span key="b" className="text-stone">
@@ -34,14 +34,14 @@ export function IntroSection() {
         <div className="mt-[clamp(3.5rem,10vh,7rem)] grid gap-10 md:grid-cols-12">
           <div className="md:col-span-5 md:col-start-7">
             <Reveal>
-              <p className="text-lede text-graphite">
+              <p className="text-lede break-words text-graphite">
                 Every project starts on site — with the light, the wind, the
                 neighbours and the way a family actually lives. The drawing comes
                 after.
               </p>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="mt-6 max-w-[52ch] text-[0.9375rem] leading-relaxed text-stone">
+              <p className="mt-6 max-w-[52ch] break-words text-[0.9375rem] leading-relaxed text-stone">
                 We work across architecture, interiors and turnkey delivery, which
                 means the people who design a space are the people accountable for
                 building it. Fewer handovers, fewer compromises, and a result that

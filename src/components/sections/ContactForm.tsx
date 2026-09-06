@@ -46,7 +46,7 @@ export function ContactForm() {
         className="outline-none"
       >
         {state.status === "error" && state.message && (
-          <p className="mb-8 border-l-2 border-bronze bg-linen px-5 py-4 text-[0.875rem] text-ink">
+          <p className="mb-8 break-words border-l-2 border-bronze bg-linen px-5 py-4 text-[0.875rem] text-ink">
             {state.message}
           </p>
         )}
@@ -111,7 +111,7 @@ export function ContactForm() {
         <input id="company" name="company" type="text" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="mt-[clamp(2.5rem,5vw,3.5rem)] flex flex-wrap items-center gap-8">
+      <div className="mt-[clamp(2.5rem,5vw,3.5rem)] flex flex-col flex-wrap items-stretch gap-8 sm:flex-row sm:items-center">
         <SubmitButton />
         <p className="max-w-[38ch] text-[0.75rem] leading-relaxed text-stone">
           We reply to every enquiry, usually within two working days.
@@ -129,7 +129,7 @@ function SubmitButton() {
       type="submit"
       disabled={pending}
       data-cursor="open"
-      className="group inline-flex items-center gap-4 border border-ink/25 px-9 py-5 text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:border-bronze hover:text-bronze disabled:cursor-wait disabled:opacity-60"
+      className="group inline-flex min-h-[44px] w-full touch-manipulation items-center justify-center gap-4 border border-ink/25 px-9 py-5 text-[0.8125rem] uppercase tracking-[0.16em] text-ink transition-colors duration-500 hover:border-bronze hover:text-bronze disabled:cursor-wait disabled:opacity-60 sm:w-auto"
     >
       {pending ? "Sending" : "Start your project"}
       <span
@@ -188,7 +188,7 @@ interface FieldProps {
 }
 
 const CONTROL =
-  "w-full border-b border-line-strong bg-transparent pb-3 pt-2 text-[1rem] text-ink outline-none transition-colors duration-500 placeholder:text-stone/80 focus:border-bronze";
+  "min-h-[44px] w-full border-b border-line-strong bg-transparent pb-3 pt-2 text-[1rem] text-ink outline-none transition-colors duration-500 placeholder:text-stone/80 focus:border-bronze";
 
 function Field({
   label,

@@ -89,20 +89,20 @@ export default function AboutPage() {
             <RevealText
               as="h2"
               id="statement-heading"
-              className="text-headline max-w-[16ch] text-ink"
+              className="text-headline max-w-[16ch] break-words text-ink"
               lines={["One team,", "start to finish."]}
             />
           </div>
 
           <div className="md:col-span-5 md:col-start-8">
             <Reveal>
-              <p className="text-lede text-graphite">
+              <p className="text-lede break-words text-graphite">
                 Most projects lose something in the handover between designer and
                 contractor. We removed the handover.
               </p>
             </Reveal>
             <Reveal delay={0.08}>
-              <p className="mt-6 max-w-[54ch] text-[0.9375rem] leading-relaxed text-stone">
+              <p className="mt-6 max-w-[54ch] break-words text-[0.9375rem] leading-relaxed text-stone">
                 Our interior, civil, HVAC, electrical, fire-detection and
                 networking teams work alongside the design team from the start,
                 against a single programme. Coordination that would normally
@@ -111,7 +111,7 @@ export default function AboutPage() {
               </p>
             </Reveal>
             <Reveal delay={0.14}>
-              <p className="mt-6 max-w-[54ch] text-[0.9375rem] leading-relaxed text-stone">
+              <p className="mt-6 max-w-[54ch] break-words text-[0.9375rem] leading-relaxed text-stone">
                 We work across {site.network.slice(0, -1).join(", ")} and{" "}
                 {site.network.at(-1)}, and manage cross-country projects with the
                 same team that designed them.
@@ -143,9 +143,9 @@ export default function AboutPage() {
                   <span className="text-[0.75rem] uppercase tracking-[0.2em] text-bronze">
                     {value.index}
                   </span>
-                  <span className="text-title text-ink">{value.title}</span>
+                  <span className="text-title break-words text-ink">{value.title}</span>
                 </dt>
-                <dd className="mt-5 max-w-[48ch] pl-[calc(0.75rem+1.25rem)] text-[0.9375rem] leading-relaxed text-stone">
+                <dd className="mt-5 max-w-[48ch] break-words pl-[calc(0.75rem+1.25rem)] text-[0.9375rem] leading-relaxed text-stone">
                   {value.body}
                 </dd>
               </Reveal>

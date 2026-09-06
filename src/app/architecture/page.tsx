@@ -71,8 +71,8 @@ export default async function ArchitecturePage() {
         <dl className="grid gap-x-[clamp(2rem,4vw,4rem)] gap-y-12 border-t border-line pt-12 md:grid-cols-3">
           {PRINCIPLES.map((principle, i) => (
             <Reveal key={principle.title} delay={i * 0.08}>
-              <dt className="text-title text-ink">{principle.title}</dt>
-              <dd className="mt-5 max-w-[42ch] text-[0.9375rem] leading-relaxed text-stone">
+              <dt className="text-title break-words text-ink">{principle.title}</dt>
+              <dd className="mt-5 max-w-[42ch] break-words text-[0.9375rem] leading-relaxed text-stone">
                 {principle.body}
               </dd>
             </Reveal>
@@ -87,7 +87,7 @@ export default async function ArchitecturePage() {
         <Reveal>
           <h2
             id="arch-projects-heading"
-            className="text-headline mb-[clamp(2.5rem,6vh,4rem)] text-ink"
+            className="text-headline mb-[clamp(2.5rem,6vh,4rem)] break-words text-ink"
           >
             Architecture projects
           </h2>

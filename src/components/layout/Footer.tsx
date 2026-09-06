@@ -15,7 +15,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer data-surface="dark" className="relative bg-ink">
+    <footer data-surface="dark" className="relative bg-ink pb-[env(safe-area-inset-bottom)]">
       <div className="container-arch py-[clamp(4rem,10vw,7rem)]">
         <div className="grid gap-[clamp(3rem,6vw,4rem)] md:grid-cols-12">
           {/* Identity */}
@@ -101,7 +101,7 @@ export function Footer() {
               {site.network.join(" · ")}
             </p>
 
-            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-3">
+            <ul className="mt-10 flex flex-wrap gap-x-6 gap-y-1">
               {site.social.map((item) => (
                 <li key={item.href}>
                   <a
@@ -109,7 +109,7 @@ export function Footer() {
                     target="_blank"
                     rel="noreferrer noopener"
                     data-cursor="hover"
-                    className="text-[0.8125rem] uppercase tracking-[0.14em] text-mist transition-colors duration-500 hover:text-paper"
+                    className="inline-block min-h-[44px] touch-manipulation py-1.5 text-[0.8125rem] uppercase tracking-[0.14em] text-mist transition-colors duration-500 hover:text-paper"
                   >
                     {item.label}
                   </a>
@@ -140,7 +140,7 @@ function FooterLink({
   external?: boolean;
 }) {
   const className =
-    "text-[0.9375rem] text-mist transition-colors duration-500 hover:text-paper";
+    "inline-block min-h-[44px] touch-manipulation content-center break-words py-1.5 text-[0.9375rem] text-mist transition-colors duration-500 hover:text-paper";
 
   if (external) {
     return (

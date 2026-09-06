@@ -117,8 +117,8 @@ export function ProjectCard({
           style={animate ? { transform: "scaleX(0)" } : undefined}
         />
 
-        <div className="flex items-baseline justify-between gap-4">
-          <span className="text-[0.6875rem] uppercase tracking-[0.18em] text-stone">
+        <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <span className="min-w-0 break-words text-[0.6875rem] uppercase tracking-[0.18em] text-stone">
             {index} <span className="mx-1 text-line-strong">/</span>{" "}
             {project.category}
           </span>
@@ -127,12 +127,12 @@ export function ProjectCard({
           </span>
         </div>
 
-        <div className="mt-3 flex items-end justify-between gap-6">
-          <div>
-            <h3 className="text-title text-ink transition-colors duration-500 group-hover:text-bronze">
+        <div className="mt-3 flex min-w-0 items-end justify-between gap-6">
+          <div className="min-w-0">
+            <h3 className="text-title break-words text-ink transition-colors duration-500 group-hover:text-bronze">
               {project.title}
             </h3>
-            <p className="mt-1.5 text-[0.8125rem] text-stone">{project.location}</p>
+            <p className="mt-1.5 break-words text-[0.8125rem] text-stone">{project.location}</p>
           </div>
 
           <span

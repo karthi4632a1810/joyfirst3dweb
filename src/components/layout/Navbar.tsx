@@ -148,7 +148,7 @@ export function Navbar() {
   return (
     <>
       <header
-        className={`fixed inset-x-0 top-0 z-50 transition-[background-color,backdrop-filter,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
+        className={`fixed inset-x-0 top-0 z-50 pt-[env(safe-area-inset-top)] transition-[background-color,backdrop-filter,border-color] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] ${
           scrolled && !open
             ? "border-b border-line bg-paper/80 backdrop-blur-xl"
             : "border-b border-transparent bg-transparent"
@@ -161,7 +161,7 @@ export function Navbar() {
           <Link
             href="/"
             data-cursor="hover"
-            className="relative z-10 text-[0.9375rem] font-medium uppercase tracking-[0.34em] text-ink transition-colors duration-500 hover:text-bronze"
+            className="relative z-10 inline-flex min-h-[44px] touch-manipulation items-center text-[0.9375rem] font-medium uppercase tracking-[0.34em] text-ink transition-colors duration-500 hover:text-bronze"
           >
             {site.name}
           </Link>
@@ -199,7 +199,7 @@ export function Navbar() {
             aria-expanded={open}
             aria-controls="mobile-menu"
             data-cursor="hover"
-            className="relative z-10 -mr-2 flex h-11 w-11 items-center justify-center md:hidden"
+            className="relative z-10 -mr-2 flex h-11 w-11 touch-manipulation items-center justify-center md:hidden"
           >
             <span className="sr-only">{open ? "Close menu" : "Open menu"}</span>
             <span aria-hidden="true" className="relative block h-3 w-6">
@@ -226,7 +226,7 @@ export function Navbar() {
         // React 19 passes `inert` through natively; it keeps the hidden panel
         // out of the tab order without a manual focus-trap fallback.
         inert={!open}
-        className="fixed inset-0 z-40 flex flex-col justify-between bg-paper px-[var(--spacing-gutter)] pb-12 pt-28 opacity-0 md:hidden"
+        className="fixed inset-0 z-40 flex flex-col justify-between overflow-y-auto overscroll-contain bg-paper px-[var(--spacing-gutter)] pb-[max(3rem,env(safe-area-inset-bottom))] pt-28 opacity-0 md:hidden"
         style={{ visibility: "hidden" }}
       >
         <ul className="flex flex-col gap-2">

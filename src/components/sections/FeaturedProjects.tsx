@@ -24,7 +24,7 @@ export function FeaturedProjects({ projects }: { projects: Project[] }) {
             <RevealText
               as="h2"
               id="featured-heading"
-              className="text-headline max-w-[14ch] text-ink"
+              className="text-headline max-w-[14ch] break-words text-ink"
               lines={["Projects", "we've built."]}
             />
           </div>
@@ -63,17 +63,17 @@ export function FeaturedProjects({ projects }: { projects: Project[] }) {
 
                   {/* Summary sits in the empty half of the grid. */}
                   <div
-                    className={`mt-8 md:mt-0 md:self-end md:pb-6 ${
+                    className={`mt-8 min-w-0 md:mt-0 md:self-end md:pb-6 ${
                       wide
                         ? "md:col-span-3 md:col-start-10"
                         : "md:col-span-4 md:col-start-1 md:row-start-1"
                     }`}
                   >
-                    <p className="text-[0.9375rem] leading-relaxed text-stone">
+                    <p className="break-words text-[0.9375rem] leading-relaxed text-stone">
                       {project.summary}
                     </p>
                     {project.area && (
-                      <p className="mt-5 text-[0.75rem] uppercase tracking-[0.14em] text-stone/80">
+                      <p className="mt-5 break-words text-[0.75rem] uppercase tracking-[0.14em] text-stone/80">
                         {project.area}
                       </p>
                     )}

@@ -73,10 +73,10 @@ export default async function ServicesPage() {
 
               <div className="md:col-span-5">
                 <Reveal delay={0.05}>
-                  <h2 className="text-headline text-ink">{service.title}</h2>
+                  <h2 className="text-headline break-words text-ink">{service.title}</h2>
                 </Reveal>
                 <Reveal delay={0.1}>
-                  <p className="mt-6 max-w-[44ch] text-lede text-graphite">
+                  <p className="mt-6 max-w-[44ch] break-words text-lede text-graphite">
                     {service.summary}
                   </p>
                 </Reveal>
@@ -123,7 +123,7 @@ export default async function ServicesPage() {
           </h2>
         </Reveal>
         <Reveal delay={0.06}>
-          <p className="mb-12 max-w-[54ch] text-lede text-graphite">
+          <p className="mb-12 max-w-[54ch] break-words text-lede text-graphite">
             Every trade below is designed and executed by our own teams, working
             to one programme. It is the reason a fit-out can land in twenty-two
             weeks without losing its detail.

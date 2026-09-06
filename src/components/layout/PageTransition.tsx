@@ -39,7 +39,7 @@ export function PageTransition({ children }: { children: React.ReactNode }) {
   }, [pathname, reducedMotion]);
 
   return (
-    <div ref={root} style={{ opacity: reducedMotion ? 1 : 0 }}>
+    <div ref={root} data-page-transition style={{ opacity: reducedMotion ? 1 : 0 }}>
       {children}
     </div>
   );
